@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MapVisualizer from './components/MapVisualizer'
 import axios from 'axios';
 
-
+const getDriverRoute = 'http://localhost:3001/driver'
 const getLegsRoute = 'http://localhost:3001/legs'
 const getStopsRoute = 'http://localhost:3001/stops'
 
@@ -11,6 +11,12 @@ class App extends Component {
     driver: {},
     legs: [],
     stops: []
+  }
+
+  async getDriver() {
+    axios.get(getDriverRoute).then(res => {
+      this.setState({ driver: res.data.driver });
+    })
   }
 
   async getLegs() {
@@ -26,14 +32,15 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.getDriver();
     this.getStops();
     this.getLegs();
   }
 
   render() {
+    console.log(this.state.driver)
     return (
       <div>
-      test
         <MapVisualizer store={this.state} />
       </div>
     );
