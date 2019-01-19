@@ -1,6 +1,7 @@
 import React from 'react';
+import BonusDriverVisualizer from './BonusDriverVisualizer'
 import DriverVisualizer from './DriverVisualizer'
-import { Stage, Layer, Circle, Line } from 'react-konva';
+import { Stage, Layer, Circle, Line } from 'react-konva'
 
 const connectStops = (leg, stops) => {
   const startStop = stops.find( (stop) => stop.name === leg.startStop)
@@ -9,7 +10,7 @@ const connectStops = (leg, stops) => {
 }
 
 const MapVisualizer = ({store}) => {
-  const { legs, stops } = store
+  const { bonusDriver, legs, stops } = store
   return (
     <Stage width={200*7} height={200*7} >
       <Layer>
@@ -17,6 +18,7 @@ const MapVisualizer = ({store}) => {
         {stops.map(stop => <Circle key={stop.name} x={stop.x*7} y={stop.y*7} width={20} height={20} fill="darkblue" />)}
       </Layer>
       <DriverVisualizer store={store} />
+      {bonusDriver.xCordinate && <BonusDriverVisualizer bonusDriver={bonusDriver} stops={stops} />}
     </Stage>
   )
 }

@@ -30,9 +30,7 @@ class App extends Component {
 
   getBonusDriver = () => {
     axios.get(getBonusDriverRoute).then(res => {
-      const { bonusDriver } = res.data
-
-      this.setState({ bonusDriver })
+      this.setState({ bonusDriver: res.data })
     })
   }
 
@@ -84,7 +82,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.bonusDriver)
     return (
       <div className="bg-light-gray">
         <Title/>

@@ -7,11 +7,12 @@ const data = require('../data');
 module.exports = (bonusDriverLocation) => {
 
   router.get("/", (req, res) => {
-    res.send({bonusDriver: bonusDriverLocation});
+    res.send(bonusDriverLocation);
   });
 
   router.put("/", (req, res) => {
     bonusDriverLocation = req.body;
+    console.log(bonusDriverLocation);
     res.send(bonusDriverLocation);
   });
 

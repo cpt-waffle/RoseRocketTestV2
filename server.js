@@ -11,7 +11,11 @@ const driverLocation = {
   "legProgress": "33"
 };
 
-const bonusDriverLocation = {};
+// const bonusDriverLocation = {};
+const bonusDriverLocation = {
+  "xCordinate": "-1",
+  "yCordinate": "-1"
+};
 
 
 app.use(cors());
