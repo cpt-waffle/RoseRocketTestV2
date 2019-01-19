@@ -7,6 +7,16 @@ const getDriverRoute = 'http://localhost:3001/driver'
 const getLegsRoute = 'http://localhost:3001/legs'
 const getStopsRoute = 'http://localhost:3001/stops'
 
+const Title = () => (
+  <div className="pa2 sky-blue tc">
+    <span className="b f2 sans-serif white">
+      <i class="fas fa-rocket white pr2"></i>
+      RoseRocket Driver Location Test
+    </span>
+  </div>
+)
+
+
 class App extends Component {
   state = {
     currentLegID: {},
@@ -55,18 +65,23 @@ class App extends Component {
 
   render() {
     return (
-      <div className="flex">
-        <div className="w-50">
-          <DriverLocationControl
-            currentLegID={this.state.currentLegID}
-            driver={this.state.driver}
-            legs={this.state.legs}
-            onChange={this.onChange}
-            onSubmit={this.onSubmit}
-          />
-        </div>
-        <div className="ba h48 w-50 overflow-scroll">
-          <MapVisualizer store={this.state} />
+      <div className="bg-light-gray">
+        <Title/>
+        <div className="flex">
+          <div className="w-50">
+            <div className="w-50 center">
+            <DriverLocationControl
+              currentLegID={this.state.currentLegID}
+              driver={this.state.driver}
+              legs={this.state.legs}
+              onChange={this.onChange}
+              onSubmit={this.onSubmit}
+            />
+            </div>
+          </div>
+          <div className="bg-white h48 overflow-scroll mt3 w-50">
+            <MapVisualizer store={this.state} />
+          </div>
         </div>
       </div>
     );
