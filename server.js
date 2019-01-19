@@ -7,8 +7,8 @@ const app         = express();
 const cors        = require('cors');
 
 const driverLocation = {
-  "activeLegID": "GH",
-  "legProgress": 33
+  "activeLegID": "FG",
+  "legProgress": "33"
 }
 
 

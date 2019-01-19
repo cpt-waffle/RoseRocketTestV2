@@ -13,8 +13,8 @@ const markLastLegProgress = (driver, stops) => {
   if (driver.hasOwnProperty('activeLegID') && stops.length > 0) {
     const startStop = stops.find( stop => stop.name === driver.activeLegID[0])
     const endStop = stops.find( stop => stop.name === driver.activeLegID[1])
-    const x3 = findProjectionPoint(startStop.x, endStop.x, driver.legProgress)
-    const y3 = findProjectionPoint(startStop.y, endStop.y, driver.legProgress)
+    const x3 = findProjectionPoint(startStop.x, endStop.x, parseInt(driver.legProgress))
+    const y3 = findProjectionPoint(startStop.y, endStop.y, parseInt(driver.legProgress))
     return <Line key={`${driver.activeLegID}Progress`} points={[startStop.x*7, startStop.y*7, x3*7, y3*7]} stroke="green" strokeWidth={3} />
   }
   return
@@ -27,7 +27,7 @@ const markPassedLegs = (leg, stops) => {
 }
 
 const markPassedStops = (driver, stops) => {
-  const lastStop = driver.legProgress === 100 ? driver.activeLegID[1] : driver.activeLegID[0]
+  const lastStop = driver.legProgress === '100' ? driver.activeLegID[1] : driver.activeLegID[0]
   const lastStopIndex = stops.findIndex( stop => stop.name === lastStop)
   return stops.slice(0, lastStopIndex+1)
 }
