@@ -38,7 +38,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.driver)
     return (
       <div>
         <MapVisualizer store={this.state} />
