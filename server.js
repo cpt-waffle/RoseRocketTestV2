@@ -11,7 +11,7 @@ const driverLocation = {
   "legProgress": "33"
 };
 
-const bonusDriverLocation = undefined;
+const bonusDriverLocation = {};
 
 
 app.use(cors());

@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import DriverLocationControl from './components/DriverLocationControl'
+import BonusDriverLocationControl from './components/BonusDriverLocationControl'
 import MapVisualizer from './components/MapVisualizer'
 import axios from 'axios';
 
+const getBonusDriverRoute = 'http://localhost:3001/bonusDriver'
 const getDriverRoute = 'http://localhost:3001/driver'
 const getLegsRoute = 'http://localhost:3001/legs'
 const getStopsRoute = 'http://localhost:3001/stops'
@@ -19,10 +21,19 @@ const Title = () => (
 
 class App extends Component {
   state = {
+    bonusDriver: {},
     currentLegID: {},
     driver: {},
     legs: [],
     stops: []
+  }
+
+  getBonusDriver = () => {
+    axios.get(getBonusDriverRoute).then(res => {
+      const { bonusDriver } = res.data
+
+      this.setState({ bonusDriver })
+    })
   }
 
   getDriver = () => {
@@ -49,6 +60,14 @@ class App extends Component {
     this.setState({ currentLegID: selectedOption })
   }
 
+  onBonusDriverSubmit = (evt) => {
+    evt.preventDefault()
+    const payload = { xCordinate: evt.target.xCordinate.value, yCordinate: evt.target.yCordinate.value }
+    axios.put(getBonusDriverRoute, payload ).then(res => {
+      this.setState({ bonusDriver: res.data })
+    })
+  }
+
   onSubmit = (evt) => {
     evt.preventDefault()
     const payload = { driverActiveLeg: this.state.currentLegID.value, legProgress: evt.target.progress.value }
@@ -58,12 +77,14 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.getBonusDriver()
     this.getDriver()
     this.getStops()
     this.getLegs()
   }
 
   render() {
+    console.log(this.state.bonusDriver)
     return (
       <div className="bg-light-gray">
         <Title/>
@@ -77,6 +98,7 @@ class App extends Component {
               onChange={this.onChange}
               onSubmit={this.onSubmit}
             />
+            <BonusDriverLocationControl onSubmit={this.onBonusDriverSubmit}/>
             </div>
           </div>
           <div className="bg-white h48 overflow-scroll mt3 w-50">
