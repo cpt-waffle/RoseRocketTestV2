@@ -11,7 +11,7 @@ const connectStops = (leg, stops) => {
 const MapVisualizer = ({store}) => {
   const { legs, stops } = store
   return (
-    <Stage width={200*2} height={150*5} className="ba">
+    <Stage width={200*7} height={200*7} >
       <Layer>
         {legs.map(leg => connectStops(leg, stops))}
         {stops.map(stop => <Circle key={stop.name} x={stop.x*7} y={stop.y*7} width={20} height={20} fill="darkblue" />)}

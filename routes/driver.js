@@ -11,5 +11,10 @@ module.exports = (driverLocation) => {
     res.send({driver: driverLocation})
   });
 
+  router.put("/", (req, res) => {
+    console.log(req.body)
+    res.send({ status: "GOOD" })
+  });
+
   return router;
 }

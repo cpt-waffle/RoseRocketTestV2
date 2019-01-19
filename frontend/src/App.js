@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import DriverLocationControl from './components/DriverLocationControl'
 import MapVisualizer from './components/MapVisualizer'
 import axios from 'axios';
 
@@ -8,39 +9,65 @@ const getStopsRoute = 'http://localhost:3001/stops'
 
 class App extends Component {
   state = {
+    currentLegID: {},
     driver: {},
     legs: [],
     stops: []
   }
 
-  async getDriver() {
+  getDriver = () => {
     axios.get(getDriverRoute).then(res => {
-      this.setState({ driver: res.data.driver });
+      const { driver } = res.data
+      const currentLegID = { label: driver.activeLegID, value: driver.activeLegID }
+      this.setState({ driver: driver, currentLegID: currentLegID })
     })
   }
 
-  async getLegs() {
+  getLegs = () => {
     axios.get(getLegsRoute).then(res => {
-      this.setState({ legs: res.data.legs });
+      this.setState({ legs: res.data.legs })
     })
   }
 
-  async getStops() {
+  getStops = () => {
     axios.get(getStopsRoute).then(res => {
-      this.setState({ stops: res.data.stops });
+      this.setState({ stops: res.data.stops })
+    })
+  }
+
+  onChange = (selectedOption) => {
+    this.setState({ currentLegID: selectedOption })
+  }
+
+  onSubmit = (evt) => {
+    evt.preventDefault()
+    const payload = { driverActiveLeg: this.state.currentLegID.value, legProgress: evt.target.progress.value }
+    axios.put(getDriverRoute, payload ).then(res => {
+      console.log(res)
     })
   }
 
   componentDidMount() {
-    this.getDriver();
-    this.getStops();
-    this.getLegs();
+    this.getDriver()
+    this.getStops()
+    this.getLegs()
   }
 
   render() {
     return (
-      <div>
-        <MapVisualizer store={this.state} />
+      <div className="flex">
+        <div className="w-50">
+          <DriverLocationControl
+            currentLegID={this.state.currentLegID}
+            driver={this.state.driver}
+            legs={this.state.legs}
+            onChange={this.onChange}
+            onSubmit={this.onSubmit}
+          />
+        </div>
+        <div className="ba h48 w-50 overflow-scroll">
+          <MapVisualizer store={this.state} />
+        </div>
       </div>
     );
   }

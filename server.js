@@ -2,12 +2,15 @@
 
 const PORT        = process.env.PORT || 3001;
 const express     = require("express");
+const bodyParser  = require("body-parser");
 const app         = express();
 
 const driverLocation = {
-  "activeLegID": "FG",
-  "legProgress": "33"
+  "activeLegID": "GH",
+  "legProgress": 33
 }
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // routes
 const driverRoutes = require('./routes/driver');
@@ -20,8 +23,12 @@ app.use(function (req, res, next) {
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH');
   // Request headers you wish to allow
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-  next();
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+  if ('OPTIONS' == req.method) {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
 });
 
 // routes mount
