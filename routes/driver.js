@@ -7,13 +7,14 @@ const data = require('../data');
 module.exports = (driverLocation) => {
 
   router.get("/", (req, res) => {
-    console.log("driver")
-    res.send({driver: driverLocation})
+    res.send({driver: driverLocation});
   });
 
   router.put("/", (req, res) => {
-    console.log(req.body)
-    res.send({ status: "GOOD" })
+    console.log(req.body);
+    const {driverActiveLeg, legProgress} = req.body
+    driverLocation = { activeLegID: driverActiveLeg, legProgress: legProgress }
+    res.send(driverLocation);
   });
 
   return router;

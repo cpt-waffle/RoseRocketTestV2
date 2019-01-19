@@ -43,7 +43,7 @@ class App extends Component {
     evt.preventDefault()
     const payload = { driverActiveLeg: this.state.currentLegID.value, legProgress: evt.target.progress.value }
     axios.put(getDriverRoute, payload ).then(res => {
-      console.log(res)
+      this.setState({ driver: res.data })
     })
   }
 
