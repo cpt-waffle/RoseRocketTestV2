@@ -6,7 +6,7 @@ const buttonStyle = "b bn center db h2 sans-serif sky-blue white w4-ns"
 const Title = () => (
   <div className="pa2 sky-blue tc">
     <span className="b f3 sans-serif white">
-      <i class="fas fa-truck white pr2"></i>
+      <i className="fas fa-truck white pr2"></i>
       Driver Control
     </span>
   </div>

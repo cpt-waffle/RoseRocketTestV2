@@ -10,7 +10,7 @@ const getStopsRoute = 'http://localhost:3001/stops'
 const Title = () => (
   <div className="pa2 sky-blue tc">
     <span className="b f2 sans-serif white">
-      <i class="fas fa-rocket white pr2"></i>
+      <i className="fas fa-rocket white pr2"></i>
       RoseRocket Driver Location Test
     </span>
   </div>
