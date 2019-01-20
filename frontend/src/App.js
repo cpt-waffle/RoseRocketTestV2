@@ -27,7 +27,8 @@ class App extends Component {
     currentProgress: 0,
     driver: {},
     legs: [],
-    stops: []
+    stops: [],
+    zoom: 7
   }
 
   getBonusDriver = () => {
@@ -112,7 +113,7 @@ class App extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 

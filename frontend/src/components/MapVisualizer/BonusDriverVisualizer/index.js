@@ -14,14 +14,14 @@ const getShortestStop = (bonusDriver, stops) => {
   return shortestStop
 }
 
-const DriverVisualizer = ({bonusDriver, stops}) => {
+const DriverVisualizer = ({bonusDriver, stops, zoom}) => {
   const shortestStop = getShortestStop(bonusDriver, stops)
   return (
     <Layer>
     { shortestStop &&
-      <Line points={[shortestStop.x*7, shortestStop.y*7, bonusDriver.xCordinate*7, bonusDriver.yCordinate*7]} stroke="red" strokeWidth={3} />
+      <Line points={[shortestStop.x*zoom, shortestStop.y*zoom, bonusDriver.xCordinate*zoom, bonusDriver.yCordinate*zoom]} stroke="red" strokeWidth={3} />
     }
-      <Circle x={bonusDriver.xCordinate*7} y={bonusDriver.yCordinate*7} width={20} height={20} fill="red" />
+      <Circle x={bonusDriver.xCordinate*zoom} y={bonusDriver.yCordinate*zoom} width={3*zoom} height={3*zoom} fill="red" />
     </Layer>
   )
 }

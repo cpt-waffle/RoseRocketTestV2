@@ -14,9 +14,6 @@ const Title = () => (
   </div>
 )
 
-const onSliderChange = (value) => console.log(value)
-
-
 const DriverLocationControl = ({currentLegID, currentProgress, driver, legs, onChange, onCurrentProgressChange, onSubmit}) => {
   return (
     <div className="bg-white mt5 sans-serif">
