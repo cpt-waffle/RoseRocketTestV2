@@ -98,7 +98,7 @@ class App extends Component {
             <BonusDriverLocationControl onSubmit={this.onBonusDriverSubmit}/>
             </div>
           </div>
-          <div className="bg-white h48 overflow-scroll mt3 w-50">
+          <div className="bg-white h48 mr4 overflow-scroll mt3 w-50">
             <MapVisualizer store={this.state} />
           </div>
         </div>

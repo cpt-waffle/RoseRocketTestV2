@@ -1,6 +1,6 @@
 import React from 'react'
 
-const buttonStyle = "b bn center db h2 sans-serif sky-blue white w4-ns"
+const buttonStyle = "b bn center db h2 mt3 sans-serif sky-blue white w4-ns"
 
 const Title = () => (
   <div className="pa2 sky-blue tc">
@@ -15,14 +15,16 @@ const Title = () => (
 
 const BonusDriverLocationControl = ({onSubmit}) => {
   return (
-    <div className="bg-white mt5">
+    <div className="bg-white mt4">
       <Title/>
-      <form className="pb4 ph6" onSubmit={onSubmit}>
+      <form className="mt3 pb4 ph6" onSubmit={onSubmit}>
         <div className="db">
-          X:<input name="xCordinate" type="number" min="0" max="200" />
+          <span>Choose X Cordinate</span>
+          <input className="ba br2 b--light-silver h2 pl2 w-100" name="xCordinate" type="number" min="0" max="200" />
         </div>
-        <div className="db">
-          Y:<input name="yCordinate" type="number" min="0" max="200" />
+        <div className="db mt2">
+          <span>Choose Y Cordinate</span>
+          <input className="ba br2 b--light-silver h2 pl2 w-100" name="yCordinate" type="number" min="0" max="200" />
         </div>
         <button className={buttonStyle}>Submit</button>
       </form>

@@ -1,11 +1,11 @@
 import React from 'react'
 import Select from 'react-select';
 
-const buttonStyle = "b bn center db h2 sans-serif sky-blue white w4-ns"
+const buttonStyle = "b bn center db h2 mt3 sans-serif sky-blue white w4-ns"
 
 const Title = () => (
   <div className="pa2 sky-blue tc">
-    <span className="b f3 sans-serif white">
+    <span className="b f3 white">
       <i className="fas fa-truck white pr2"></i>
       Driver Control
     </span>
@@ -16,17 +16,22 @@ const Title = () => (
 
 const DriverLocationControl = ({currentLegID, driver, legs, onChange, onSubmit}) => {
   return (
-    <div className="bg-white mt5">
+    <div className="bg-white mt5 sans-serif">
       <Title/>
       <form className="pb4 ph6" onSubmit={onSubmit}>
-        <div className="pt4">
+        <div className="mt3">
+          <span>Choose Leg</span>
           <Select
+            className="black"
             onChange={onChange}
             options = {legs.map( leg => { return { label: leg.legID, value: leg.legID } })}
             value={currentLegID}
           />
         </div>
-        <input name="progress" type="number" min="0" max="100" />
+        <div className="mt2">
+          <span className="db m0">Choose Progress</span>
+          <input className="ba br2 b--light-silver h2 pl2 w-100" name="progress" type="number" min="0" max="100" />
+        </div>
         <button className={buttonStyle}>Submit</button>
       </form>
     </div>
