@@ -59,8 +59,8 @@ const DriverStatus = ({store, zoomIn, zoomOut}) => {
         <span className="db">Time Left until Arrival: {formatTime(totalTime(distanceLeft(driver, legs, stops)))}</span>
       </div>
       <div className="mr2">
-        <i className="fas fa-search-plus fa-2x" onClick={zoomIn}></i>
-        <i className="fas fa-search-minus fa-2x" onClick={zoomOut}></i>
+        <i className="child hover-black-50 fas fa-search-plus fa-2x" onClick={zoomIn}></i>
+        <i className="child hover-black-50 fas fa-search-minus fa-2x" onClick={zoomOut}></i>
       </div>
     </div>
   )
