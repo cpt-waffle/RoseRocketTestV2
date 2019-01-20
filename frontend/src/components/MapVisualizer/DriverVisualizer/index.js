@@ -15,7 +15,7 @@ const markLastLegProgress = (driver, stops) => {
     const endStop = stops.find( stop => stop.name === driver.activeLegID[1])
     const x3 = findProjectionPoint(startStop.x, endStop.x, parseInt(driver.legProgress))
     const y3 = findProjectionPoint(startStop.y, endStop.y, parseInt(driver.legProgress))
-    return <Line key={`${driver.activeLegID}Progress`} points={[startStop.x*7, startStop.y*7, x3*7, y3*7]} stroke="green" strokeWidth={3} />
+    return <Line key={`${driver.activeLegID}Progress`} points={[startStop.x*7, startStop.y*7, x3*7, y3*7]} stroke="#24fb3e" strokeWidth={3} />
   }
   return
 }
@@ -23,11 +23,11 @@ const markLastLegProgress = (driver, stops) => {
 const markPassedLegs = (leg, stops) => {
   const startStop = stops.find( stop => stop.name === leg.startStop)
   const endStop = stops.find( stop => stop.name === leg.endStop)
-  return <Line key={leg.legID} points={[startStop.x*7, startStop.y*7, endStop.x*7, endStop.y*7]} stroke="green" strokeWidth={3} />
+  return <Line key={leg.legID} points={[startStop.x*7, startStop.y*7, endStop.x*7, endStop.y*7]} stroke="#24fb3e" strokeWidth={3} />
 }
 
 const markPassedStops = (driver, stops) => {
-  const lastStop = driver.legProgress === '100' ? driver.activeLegID[1] : driver.activeLegID[0]
+  const lastStop = driver.legProgress === 100 ? driver.activeLegID[1] : driver.activeLegID[0]
   const lastStopIndex = stops.findIndex( stop => stop.name === lastStop)
   return stops.slice(0, lastStopIndex+1)
 }
@@ -40,7 +40,7 @@ const DriverVisualizer = ({store}) => {
     <Layer>
       {markLastLegProgress(driver, stops)}
       {passedLegs.map( leg => markPassedLegs(leg, stops))}
-      {passedStops.map( stop => <Circle key={stop.name} x={stop.x*7} y={stop.y*7} width={20} height={20} fill="green" />)}
+      {passedStops.map( stop => <Circle key={stop.name} x={stop.x*7} y={stop.y*7} width={20} height={20} fill="#24fb3e" />)}
     </Layer>
   )
 }
