@@ -12,7 +12,6 @@ module.exports = (bonusDriverLocation) => {
 
   router.put("/", (req, res) => {
     bonusDriverLocation = req.body;
-    console.log(bonusDriverLocation);
     res.send(bonusDriverLocation);
   });
 

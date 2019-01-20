@@ -18,7 +18,7 @@ const MapVisualizer = ({store}) => {
         {stops.map(stop => <Circle key={stop.name} x={stop.x*7} y={stop.y*7} width={20} height={20} fill="darkblue" />)}
       </Layer>
       <DriverVisualizer store={store} />
-      {bonusDriver.xCordinate && <BonusDriverVisualizer bonusDriver={bonusDriver} stops={stops} />}
+      {bonusDriver.xCordinate && bonusDriver.xCordinate !== "-1" && <BonusDriverVisualizer bonusDriver={bonusDriver} stops={stops} />}
     </Stage>
   )
 }
