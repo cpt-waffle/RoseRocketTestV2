@@ -1,6 +1,7 @@
 import React from 'react';
 import BonusDriverVisualizer from './BonusDriverVisualizer'
 import DriverVisualizer from './DriverVisualizer'
+import LiveProgress from './LiveProgress'
 import { Stage, Layer, Circle, Line } from 'react-konva'
 
 const connectStops = (leg, stops) => {
@@ -10,7 +11,7 @@ const connectStops = (leg, stops) => {
 }
 
 const MapVisualizer = ({store}) => {
-  const { bonusDriver, legs, stops } = store
+  const { currentLegID, currentProgress, bonusDriver, legs, stops } = store
   return (
     <Stage width={200*7} height={200*7} >
       <Layer>
@@ -19,6 +20,7 @@ const MapVisualizer = ({store}) => {
       </Layer>
       <DriverVisualizer store={store} />
       {bonusDriver.xCordinate && bonusDriver.xCordinate !== "-1" && <BonusDriverVisualizer bonusDriver={bonusDriver} stops={stops} />}
+      <LiveProgress currentLegID={currentLegID} currentProgress={currentProgress} stops={stops} />
     </Stage>
   )
 }

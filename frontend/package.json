@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "konva": "^2.6.0",
+    "rc-slider": "^8.6.4",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-konva": "^16.7.1",

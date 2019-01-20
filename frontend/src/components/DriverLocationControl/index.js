@@ -1,5 +1,7 @@
 import React from 'react'
-import Select from 'react-select';
+import Select from 'react-select'
+import Slider from 'rc-slider'
+import 'rc-slider/assets/index.css'
 
 const buttonStyle = "b bn center db h2 mt3 sans-serif sky-blue white w4-ns"
 
@@ -12,9 +14,10 @@ const Title = () => (
   </div>
 )
 
+const onSliderChange = (value) => console.log(value)
 
 
-const DriverLocationControl = ({currentLegID, driver, legs, onChange, onSubmit}) => {
+const DriverLocationControl = ({currentLegID, currentProgress, driver, legs, onChange, onCurrentProgressChange, onSubmit}) => {
   return (
     <div className="bg-white mt5 sans-serif">
       <Title/>
@@ -30,7 +33,7 @@ const DriverLocationControl = ({currentLegID, driver, legs, onChange, onSubmit})
         </div>
         <div className="mt2">
           <span className="db m0">Choose Progress</span>
-          <input className="ba br2 b--light-silver h2 pl2 w-100" name="progress" type="number" min="0" max="100" />
+          <Slider min={0} max={100} value={parseInt(currentProgress)} onChange={ value => onCurrentProgressChange(value) }/>
         </div>
         <button className={buttonStyle}>Submit</button>
       </form>
