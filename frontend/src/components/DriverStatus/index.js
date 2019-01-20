@@ -50,12 +50,18 @@ const distanceLeft = (driver, legs, stops) => {
   return legsLeftDistance
 }
 
-const DriverStatus = ({store}) => {
+const DriverStatus = ({store, zoomIn, zoomOut}) => {
   const { driver, legs, stops } = store
   return (
-    <div className="b sans-serif sky-blue white pv2">
-      <span className="db">Total Time: {formatTime(totalTime(distanceBetweenLegs(legs, stops)))}</span>
-      <span className="db">Time Left until Arrival: {formatTime(totalTime(distanceLeft(driver, legs, stops)))}</span>
+    <div className="b flex justify-between sans-serif sky-blue white pv2">
+      <div className="ml2">
+        <span className="db">Total Time: {formatTime(totalTime(distanceBetweenLegs(legs, stops)))}</span>
+        <span className="db">Time Left until Arrival: {formatTime(totalTime(distanceLeft(driver, legs, stops)))}</span>
+      </div>
+      <div className="mr2">
+        <i className="fas fa-search-plus fa-2x" onClick={zoomIn}></i>
+        <i className="fas fa-search-minus fa-2x" onClick={zoomOut}></i>
+      </div>
     </div>
   )
 }

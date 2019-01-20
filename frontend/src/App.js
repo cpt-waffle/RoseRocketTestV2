@@ -79,6 +79,10 @@ class App extends Component {
     })
   }
 
+  zoomIn = () => this.setState({ zoom: this.state.zoom + 1 })
+
+  zoomOut = () => this.setState({ zoom: this.state.zoom - 1 })
+
   componentDidMount() {
     this.getBonusDriver()
     this.getDriver()
@@ -109,7 +113,7 @@ class App extends Component {
             <div className="bg-white h48 mt3 overflow-scroll">
               <MapVisualizer store={this.state} />
             </div>
-            {Object.keys(this.state.legs).length > 0 && <DriverStatus store={this.state} />}
+            {Object.keys(this.state.legs).length > 0 && <DriverStatus store={this.state} zoomIn={this.zoomIn} zoomOut={this.zoomOut}/>}
           </div>
         </div>
       </div>
