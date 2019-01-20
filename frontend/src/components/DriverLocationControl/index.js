@@ -21,7 +21,7 @@ const DriverLocationControl = ({currentLegID, currentProgress, driver, legs, onC
   return (
     <div className="bg-white mt5 sans-serif">
       <Title/>
-      <form className="pb4 ph6" onSubmit={onSubmit}>
+      <form className="pb4 ph4-l" onSubmit={onSubmit}>
         <div className="mt3">
           <span>Choose Leg</span>
           <Select

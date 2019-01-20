@@ -11,7 +11,6 @@ module.exports = (driverLocation) => {
   });
 
   router.put("/", (req, res) => {
-    console.log(req.body);
     const {driverActiveLeg, legProgress} = req.body
     driverLocation = { activeLegID: driverActiveLeg, legProgress: legProgress }
     res.send(driverLocation);

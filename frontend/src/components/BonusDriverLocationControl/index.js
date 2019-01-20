@@ -17,7 +17,7 @@ const BonusDriverLocationControl = ({onSubmit}) => {
   return (
     <div className="bg-white mt4">
       <Title/>
-      <form className="mt3 pb4 ph6" onSubmit={onSubmit}>
+      <form className="mt3 pb4 ph4-l" onSubmit={onSubmit}>
         <div className="db">
           <span>Choose X Cordinate</span>
           <input className="ba br2 b--light-silver h2 pl2 w-100" name="xCordinate" type="number" min="0" max="200" />

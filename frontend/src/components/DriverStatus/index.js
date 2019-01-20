@@ -24,7 +24,6 @@ const distanceBetweenLegs =  (legs, stops)  =>
 const totalTime = ( legs ) => {
   let sum = 0
   legs.map( leg => {
-    console.log(sum)
     sum = sum + ( leg.distance/leg.speedLimit )
     leg.time = leg.distance/leg.speedLimit
     return leg
