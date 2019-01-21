@@ -31,13 +31,17 @@ class App extends Component {
     zoom: 7
   }
 
-  getBonusDriver = () => {
+  checkAllState = () => {
+    return this.state.legs.length > 0 && this.state.stops.length > 0 && this.state.driver && Object.keys(this.state.driver).length > 0 && Object.keys(this.state.bonusDriver).length
+  }
+
+  async getBonusDriver() {
     axios.get(getBonusDriverRoute).then(res => {
       this.setState({ bonusDriver: res.data })
     })
   }
 
-  getDriver = () => {
+  async getDriver() {
     axios.get(getDriverRoute).then(res => {
       const { driver } = res.data
       const currentLegID = { label: driver.activeLegID, value: driver.activeLegID }
@@ -45,13 +49,13 @@ class App extends Component {
     })
   }
 
-  getLegs = () => {
+  async getLegs() {
     axios.get(getLegsRoute).then(res => {
       this.setState({ legs: res.data.legs })
     })
   }
 
-  getStops = () => {
+  async getStops() {
     axios.get(getStopsRoute).then(res => {
       this.setState({ stops: res.data.stops })
     })
@@ -86,38 +90,37 @@ class App extends Component {
   zoomOut = () => this.setState({ zoom: this.state.zoom - 1 })
 
   componentDidMount() {
-    this.getBonusDriver()
-    this.getDriver()
-    this.getStops()
-    this.getLegs()
+    this.getBonusDriver().then(this.getDriver().then(this.getStops().then(this.getLegs())))
   }
 
   render() {
     return (
       <div className="bg-light-gray">
         <Title/>
-        <div className="flex">
-          <div className="w-50">
-            <div className="w-50 center">
-            <DriverLocationControl
-              currentLegID={this.state.currentLegID}
-              currentProgress={this.state.currentProgress}
-              driver={this.state.driver}
-              legs={this.state.legs}
-              onChange={this.onChange}
-              onCurrentProgressChange={this.onCurrentProgressChange}
-              onSubmit={this.onSubmit}
-            />
-            <BonusDriverLocationControl onSubmit={this.onBonusDriverSubmit}/>
+        {this.checkAllState() &&
+          <div className="flex">
+            <div className="w-50">
+              <div className="w-50 center">
+              <DriverLocationControl
+                currentLegID={this.state.currentLegID}
+                currentProgress={this.state.currentProgress}
+                driver={this.state.driver}
+                legs={this.state.legs}
+                onChange={this.onChange}
+                onCurrentProgressChange={this.onCurrentProgressChange}
+                onSubmit={this.onSubmit}
+              />
+              <BonusDriverLocationControl onSubmit={this.onBonusDriverSubmit}/>
+              </div>
+            </div>
+            <div className="di mr4 w-50">
+              <div className="bg-white h48 mt3 overflow-scroll">
+                <MapVisualizer store={this.state} />
+              </div>
+              {Object.keys(this.state.legs).length > 0 && <DriverStatus store={this.state} zoomIn={this.zoomIn} zoomOut={this.zoomOut}/>}
             </div>
           </div>
-          <div className="di mr4 w-50">
-            <div className="bg-white h48 mt3 overflow-scroll">
-              <MapVisualizer store={this.state} />
-            </div>
-            {Object.keys(this.state.legs).length > 0 && <DriverStatus store={this.state} zoomIn={this.zoomIn} zoomOut={this.zoomOut}/>}
-          </div>
-        </div>
+        }
       </div>
     )
   }
