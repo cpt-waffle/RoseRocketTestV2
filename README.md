@@ -1,5 +1,5 @@
 # RoseRocket Truck Location Techincal Test
-## Live Link [here](https://vasiliy-klimkin.github.io/rrTestV2/)
+## Live Link [here](https://vasiliy-klimkin.github.io/rrTestV2/) <- It loads slowly be patient
 Backend deployed through heroku and Frontend deployed through github pages.
 
 ![1](https://github.com/vasiliy-klimkin/RoseRocketTestV2/blob/master/docs/images/app.png?raw=true)
