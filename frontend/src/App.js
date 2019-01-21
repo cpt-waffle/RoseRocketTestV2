@@ -63,10 +63,12 @@ class App extends Component {
 
   onBonusDriverSubmit = evt => {
     evt.preventDefault()
-    const payload = { xCordinate: evt.target.xCordinate.value, yCordinate: evt.target.yCordinate.value }
-    axios.put(getBonusDriverRoute, payload ).then(res => {
-      this.setState({ bonusDriver: res.data })
-    })
+    if (evt.target.xCordinate.value.length && evt.target.yCordinate.value.length) {
+      const payload = { xCordinate: evt.target.xCordinate.value, yCordinate: evt.target.yCordinate.value }
+      axios.put(getBonusDriverRoute, payload ).then(res => {
+        this.setState({ bonusDriver: res.data })
+      })
+    }
   }
 
   onCurrentProgressChange = value => this.setState({ currentProgress: value})
